@@ -27,6 +27,18 @@
   }
 }
 
+@media screen and (max-width:650px) {
+  .container {
+    grid-template-areas: 
+      "t t t"
+      "a . c"
+      "d . f"
+      "e e e"
+      "g . i"
+      "h h h";
+  }
+}
+
 @media screen and (max-width:460px) {
   .compare {
     flex-direction: column;

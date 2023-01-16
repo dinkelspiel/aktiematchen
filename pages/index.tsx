@@ -98,9 +98,7 @@ const index = () => {
                 {(stockData["stockA"]["response"]["marketCap"] / (stockData["stockA"]["response"]["marketCap"] + stockData["stockB"]["response"]["marketCap"]) * 100).toString().substring(0,4)}%
               </div>
             </div>
-            { size.width > 650 ?
-              <PieChart class={styles.marketCapPie} labelA="SAVE" labelB="AZA" dataA={stockData["stockB"]["response"]["marketCap"]} dataB={stockData["stockA"]["response"]["marketCap"]} /> : ""
-            }
+            <PieChart class={styles.marketCapPie} labelA="SAVE" labelB="AZA" dataA={stockData["stockB"]["response"]["marketCap"]} dataB={stockData["stockA"]["response"]["marketCap"]} />
             <div className={`${styles.marketCap} ${styles.marketCapB}`}>
               <div>
                 Market cap
@@ -124,9 +122,7 @@ const index = () => {
                 {(stockData["stockA"]["response"]["peRatio"] / (stockData["stockA"]["response"]["peRatio"] + stockData["stockB"]["response"]["peRatio"]) * 100).toString().substring(0,4)}%
               </div>
             </div>
-            { size.width > 650 ?
-              <PieChart class={styles.peRatioPie} labelA="SAVE" labelB="AZA" dataA={stockData["stockB"]["response"]["peRatio"]} dataB={stockData["stockA"]["response"]["peRatio"]} /> : ""
-            }
+            <PieChart class={styles.peRatioPie} labelA="SAVE" labelB="AZA" dataA={stockData["stockB"]["response"]["peRatio"]} dataB={stockData["stockA"]["response"]["peRatio"]} />
             <div className={`${styles.peRatio} ${styles.peRatioB}`}>
               <div>
                 P/E Ratio
