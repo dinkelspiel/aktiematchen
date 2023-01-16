@@ -29,7 +29,7 @@ const index = () => {
 
   async function loadStock() {
     setStockData(undefined)
-    fetch(`http://localhost:3000/api/${compStockA}/${compStockB}`)
+    fetch(`/api/${compStockA}/${compStockB}`)
     .then(response => {
       if(response.ok) {
         return response.json()
