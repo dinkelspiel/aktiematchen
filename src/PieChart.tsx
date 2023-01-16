@@ -4,7 +4,15 @@ import React from 'react'
 import { Pie } from "react-chartjs-2";
 import styles from '@/styles/Home.module.css'
 
-const PieChart = (props) => {
+type PieChartProps = {
+    labelA: string,
+    labelB: string,
+    dataA: string,
+    dataB: string,
+    class: string,
+}
+
+const PieChart = (props: PieChartProps) => {
 
     let labels = [props.labelA ? props.labelA : "stockA", props.labelB ? props.labelA : "stockB" ];
     let datasets = [
@@ -17,10 +25,6 @@ const PieChart = (props) => {
     return (
         <Pie
             className={`${props.class} ${styles.pieChart}`}
-            options={{
-                width: "64",
-                height: "64"
-            }}
             data={{
                 labels: labels,
                 datasets: datasets

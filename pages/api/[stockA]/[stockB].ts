@@ -1,9 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import YahooStockAPI from '../../../src/dist/index'
+import APIResponse from '../../../src/dist/index'
 
 type Data = {
-  name: string
+  stockA: any,
+  stockB: any
 }
 
 export default async function handler(
