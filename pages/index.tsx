@@ -14,7 +14,7 @@ const index = () => {
   let [compStockB, setCompStockB] = useState("")
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/${stockA}/${stockB}`)
+    fetch(`/api/${stockA}/${stockB}`)
       .then(response => {
         if(response.ok) {
           return response.json()
