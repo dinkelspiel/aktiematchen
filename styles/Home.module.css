@@ -1,0 +1,123 @@
+.container {
+  font-size: 20px;
+  margin: 50px 500px;
+  width: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  row-gap: 50px;
+  grid-template-rows: auto;
+  white-space: normal;
+  grid-template-areas: 
+    "t t t"
+    "a . c"
+    "d e f"
+    "g h i";
+}
+
+@media screen and (max-width:2080px) {
+  .container {
+    margin: 50px 300px;
+  }
+}
+
+@media screen and (max-width:1300px) {
+  .container {
+    margin: 20px 2%;
+  }
+}
+
+@media screen and (max-width:460px) {
+  .compare {
+    flex-direction: column;
+  }
+}
+
+.pieChart {
+  width: 130px !important;
+  height: 130px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.marketCapPie {
+  grid-area: e;
+  width: 150px !important;
+  height: 150px !important;
+}
+
+.peRatioPie {
+  grid-area: h;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.header .name {
+  font-weight: bold;
+}
+
+.headerA {
+  grid-area: a;
+  text-align: left ;
+}
+
+.headerB {
+  grid-area: c;
+  text-align: right;
+}
+
+.marketCapA {
+  grid-area: d;
+}
+
+.marketCapB {
+  grid-area: f;
+  text-align: right;
+}
+
+.marketCap {
+  margin-top: auto;
+  margin-bottom: auto;
+  word-break: break-all;
+}
+
+.peRatioA {
+  grid-area: g;
+}
+
+.peRatioB {
+  grid-area: i;
+  text-align: right;
+}
+
+.peRatio {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.marketCapB > div:first-of-type {
+  color: white;
+}
+
+.peRatioB > div:first-of-type {
+  color: white;
+}
+
+.marketCap > div:nth-of-type(3) {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.peRatio > div:nth-of-type(3) {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.compare { 
+  display: flex;
+  gap: 5px;
+  grid-area: t;
+}
