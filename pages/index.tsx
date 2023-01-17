@@ -13,6 +13,10 @@ const index = () => {
   let [compStockA, setCompStockA] = useState("")
   let [compStockB, setCompStockB] = useState("")
 
+  const toHumanString = (price: string): string => {
+    return formatter.format(price).substring(0,6) + " MSEK"
+  };
+
   useEffect(() => {
     fetch(`/api/${stockA}/${stockB}`)
       .then(response => {
@@ -92,7 +96,7 @@ const index = () => {
                 Market cap
               </div>
               <div>
-                {formatter.format(stockData["stockA"]["response"]["marketCap"])}
+                {toHumanString(stockData["stockA"]["response"]["marketCap"])}
               </div>
               <div>
                 {(stockData["stockA"]["response"]["marketCap"] / (stockData["stockA"]["response"]["marketCap"] + stockData["stockB"]["response"]["marketCap"]) * 100).toString().substring(0,4)}%
@@ -104,7 +108,7 @@ const index = () => {
                 Market cap
               </div>
               <div>
-                {formatter.format(stockData["stockB"]["response"]["marketCap"])}
+              {toHumanString(stockData["stockB"]["response"]["marketCap"])}
               </div>
               <div>
                 {(stockData["stockB"]["response"]["marketCap"] / (stockData["stockA"]["response"]["marketCap"] + stockData["stockB"]["response"]["marketCap"]) * 100).toString().substring(0,4)}%
