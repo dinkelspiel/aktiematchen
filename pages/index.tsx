@@ -66,7 +66,7 @@ const index = () => {
             <div className={styles.compare}>
               <input placeholder="Företag 1 (SAVE)" value={compStockA} onChange={(e) => setCompStockA(e.target.value)} />
               <input placeholder="Företag 2 (AZA)" value={compStockB} onChange={(e) => setCompStockB(e.target.value)} />
-              <button onClick={() => loadStock()}>Jämnför</button>
+              <button onClick={() => loadStock()}>Jämför</button>
             </div>
             <div className={`${styles.header} ${styles.headerA}`}>
               <div className={styles.name}>
