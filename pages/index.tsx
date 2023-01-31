@@ -11,8 +11,8 @@ const index = () => {
   let [stockA, setStockA] = useState("SAVE")
   let [stockB, setStockB] = useState("AZA")
 
-  let [compStockA, setCompStockA] = useState("")
-  let [compStockB, setCompStockB] = useState("")
+  let [compStockA, setCompStockA] = useState("SAVE")
+  let [compStockB, setCompStockB] = useState("AZA")
 
   const toHumanString = (price: number): string => {
     return formatter.format(price).substring(0,6) + " MSEK"
