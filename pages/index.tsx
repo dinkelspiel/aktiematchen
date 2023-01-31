@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import React, { useEffect, useState } from 'react'
 import PieChart from '@/src/PieChart'
+import tickers from "@/src/Tickers"
 
 const index = () => {
 
@@ -22,6 +23,9 @@ const index = () => {
       .then(response => {
         if(response.ok) {
           return response.json()
+        }
+        if(response.stockA.error == true || response.stockB.error == true) {
+          throw response;
         }
         throw response;
       })
@@ -70,6 +74,15 @@ const index = () => {
             <div className={styles.compare}>
               <input placeholder="Företag 1 (SAVE)" value={compStockA} onChange={(e) => setCompStockA(e.target.value)} />
               <input placeholder="Företag 2 (AZA)" value={compStockB} onChange={(e) => setCompStockB(e.target.value)} />
+              <select>
+                {
+                  tickers.forEach((val, idx) => {
+                    return (<option>
+                      {val}
+                    </option>)
+                  })
+                }
+              </select>
               <button onClick={() => loadStock()}>Jämför</button>
             </div>
             <div className={`${styles.header} ${styles.headerA}`}>
