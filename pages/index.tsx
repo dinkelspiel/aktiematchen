@@ -83,7 +83,7 @@ const index = () => {
                   })
                 }
               </select>
-              <select value={compStockB=''} onChange={(e) => setCompStockB(e.target.value)} placeholder="Företag 2 (AZA)">
+              <select value={compStockB} onChange={(e) => setCompStockB(e.target.value)} placeholder="Företag 2 (AZA)">
                 {
                   tickers.map((val, idx) => {
                     return (<option>
