@@ -24,13 +24,13 @@ const index = () => {
         if(response.ok) {
           return response.json()
         }
-        if(response.stockA.error == true || response.stockB.error == true) {
-          throw response;
-        }
         throw response;
       })
       .then(data => {
         console.log(data)
+        if(data["stockA"].error == true || data["stockB"].error == true) {
+          throw data;
+        }
         setStockData(data);
       });
   }, [])
@@ -76,7 +76,7 @@ const index = () => {
               <input placeholder="Företag 2 (AZA)" value={compStockB} onChange={(e) => setCompStockB(e.target.value)} />
               <select>
                 {
-                  tickers.forEach((val, idx) => {
+                  tickers.map((val, idx) => {
                     return (<option>
                       {val}
                     </option>)
