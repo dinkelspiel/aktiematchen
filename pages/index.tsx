@@ -47,8 +47,8 @@ const index = () => {
     .then(data => {
       setStockA(compStockA);
       setStockB(compStockB);
-      setCompStockA("");
-      setCompStockB("");
+      setCompStockA("SAVE");
+      setCompStockB("AZA");
       setStockData(data);
     });
   }
