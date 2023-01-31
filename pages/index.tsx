@@ -14,9 +14,6 @@ const index = () => {
   let [compStockA, setCompStockA] = useState("")
   let [compStockB, setCompStockB] = useState("")
 
-  let [compAFilter, setCompAFilter] = useState("")
-
-
   const toHumanString = (price: number): string => {
     return formatter.format(price).substring(0,6) + " MSEK"
   };
@@ -75,18 +72,20 @@ const index = () => {
         { stockData ?
           <div className={styles.container}>
             <div className={styles.compare}>
-              <input placeholder="Företag 1 (SAVE)" value={compStockA} onChange={(e) => setCompStockA(e.target.value)} />
-              <input placeholder="Företag 2 (AZA)" value={compStockB} onChange={(e) => setCompStockB(e.target.value)} />
-              <select value={compStockA} onChange={(e) => setCompStockA(e.target.value)}>
-                <option>
-                  <input value={compAFilter} onChange={(e) => setCompAFilter(e.target.value)} placeholder="Filter"></input>
-                </option>
+              {/* <input placeholder="Företag 1 (SAVE)" value={compStockA} onChange={(e) => setCompStockA(e.target.value)} />
+              <input placeholder="Företag 2 (AZA)" value={compStockB} onChange={(e) => setCompStockB(e.target.value)} /> */}
+              <select value={compStockA} onChange={(e) => setCompStockA(e.target.value)} placeholder="Företag 1 (SAVE)">
                 {
                   tickers.map((val, idx) => {
-                    if(!val.includes(compAFilter)) {
-                      return;
-                    }
-
+                    return (<option>
+                      {val}
+                    </option>)
+                  })
+                }
+              </select>
+              <select value={compStockB=''} onChange={(e) => setCompStockB(e.target.value)} placeholder="Företag 2 (AZA)">
+                {
+                  tickers.map((val, idx) => {
                     return (<option>
                       {val}
                     </option>)
