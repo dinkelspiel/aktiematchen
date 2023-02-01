@@ -45,6 +45,7 @@ const index = () => {
       throw response;
     })
     .then(data => {
+      console.log(data);
       setStockA(compStockA);
       setStockB(compStockB);
       setCompStockA("SAVE");
