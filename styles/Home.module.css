@@ -48,11 +48,11 @@
   }
 
   .compare * {
-    width: 32%;
+    width: 32vw;
     height: auto;
     border-radius: 6px;
     padding: 8px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .compare select {
