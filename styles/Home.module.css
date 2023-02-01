@@ -55,7 +55,7 @@
 
   .compare select {
     background-color: white;
-    outline: solid;
+    border: 1px solid lightgray;
   }
 
   .compare button {
