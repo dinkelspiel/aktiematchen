@@ -41,7 +41,17 @@
 
 @media screen and (max-width:460px) {
   .compare {
-    flex-direction: column;
+    flex-direction: row;
+  }
+
+  .compare * {
+    width: 20%;
+    height: 48px;
+    border-radius: 4px;
+  }
+
+  .compare button {
+    background-color: blue;
   }
 }
 
