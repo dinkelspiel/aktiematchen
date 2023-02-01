@@ -42,16 +42,21 @@
 @media screen and (max-width:460px) {
   .compare {
     flex-direction: row;
+    gap: auto;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .compare * {
-    width: 20%;
+    width: 32%;
     height: 48px;
     border-radius: 4px;
+    appearance: none;
   }
 
   .compare button {
-    background-color: blue;
+    background-color: #A084DC;
+    border-radius: 4px;
   }
 }
 
