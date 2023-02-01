@@ -50,7 +50,8 @@
   .compare * {
     width: 32%;
     height: 24px;
-    border-radius: 8px;
+    border-radius: 6px;
+    padding: 8px;
   }
 
   .compare select {
@@ -60,7 +61,7 @@
 
   .compare button {
     background-color: #A084DC;
-    border-radius: 8px;
+    border-radius: 6px;
     color: white;
   }
 }
