@@ -49,7 +49,7 @@
 
   .compare * {
     width: 32%;
-    height: 24px;
+    height: auto;
     border-radius: 6px;
     padding: 8px;
   }
