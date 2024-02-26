@@ -75,7 +75,9 @@ export default function Home() {
           <div className="text-2xl font-semibold">Aktiematchen</div>
           <Drawer onOpenChange={(o) => setChangeOpen(o)} open={changeOpen}>
             <DrawerTrigger asChild>
-              <div className="text-xsm cursor-pointer underline">Change</div>
+              <div className="text-xsm cursor-pointer underline">
+                Byt företag
+              </div>
             </DrawerTrigger>
             <DrawerContent className="flex px-[40px]">
               <div className="flex flex-col gap-[40px]">
@@ -108,7 +110,7 @@ export default function Home() {
         <div className="flex flex-row justify-between px-[20px]">
           <div className="flex flex-col gap-[3px]">
             <div className="w-max rounded-full border border-gray-200 px-2 text-[9px] font-semibold">
-              SAVE
+              {stockA?.symbol.substring(0, stockA.symbol.length - 3)}
             </div>
             <div className="font-medium">{stockA?.shortName}</div>
           </div>
@@ -117,7 +119,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-[3px]">
             <div className="ms-auto w-max rounded-full border border-gray-200 px-2 text-[9px] font-semibold">
-              AZA
+              {stockB?.symbol.substring(0, stockB.symbol.length - 3)}
             </div>
             <div className="font-medium">{stockB?.shortName}</div>
           </div>
@@ -210,27 +212,29 @@ export default function Home() {
         <div>
           <table className="w-full">
             <thead>
-              <tr className="h-[56px] border-b border-t border-[#C5C5C5] bg-[#F5F5F5] text-[11px] font-semibold text-[#A1A1A1]">
-                <th className="w-full ps-[20px] text-left">COMPARE</th>
-                <th className="min-w-[71px] text-left ">{stockA?.symbol}</th>
+              <tr className="h-[56px] border-b border-t border-[#C5C5C5] bg-[#F5F5F5] text-[14px] font-semibold text-[#A1A1A1]">
+                <th className="w-full ps-[20px] text-left">JÄMFÖR</th>
+                <th className="min-w-[71px] text-left ">
+                  {stockA?.symbol.substring(0, stockA.symbol.length - 3)}
+                </th>
                 <th className="min-w-[71px] pr-[20px] text-left ">
-                  {stockB?.symbol}
+                  {stockB?.symbol.substring(0, stockB.symbol.length - 3)}
                 </th>
               </tr>
             </thead>
             <tbody>
               {/* Compared to yesterday */}
-              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[12px] font-semibold">
-                <td className="ps-[20px]">Compared to Yesterday</td>
+              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[14px] font-semibold">
+                <td className="ps-[20px]">Igår</td>
                 {stockA !== undefined && stockB !== undefined && (
                   <>
                     <td>
                       {(
-                        ((stockA.marketCap *
-                          (1 + stockA.regularMarketChangePercent / 100)) /
-                          (stockA.marketCap *
+                        (stockA.marketCap /
+                          (1 + stockA.regularMarketChangePercent / 100) /
+                          (stockA.marketCap /
                             (1 + stockA.regularMarketChangePercent / 100) +
-                            stockB.marketCap *
+                            stockB.marketCap /
                               (1 + stockB.regularMarketChangePercent / 100))) *
                         100
                       ).toFixed(1)}
@@ -238,11 +242,11 @@ export default function Home() {
                     </td>
                     <td className="pr-[20px]">
                       {(
-                        ((stockB.marketCap *
-                          (1 + stockB.regularMarketChangePercent / 100)) /
-                          (stockA.marketCap *
+                        (stockB.marketCap /
+                          (1 + stockB.regularMarketChangePercent / 100) /
+                          (stockA.marketCap /
                             (1 + stockA.regularMarketChangePercent / 100) +
-                            stockB.marketCap *
+                            stockB.marketCap /
                               (1 + stockB.regularMarketChangePercent / 100))) *
                         100
                       ).toFixed(1)}
@@ -252,10 +256,65 @@ export default function Home() {
                 )}
               </tr>
 
+              {/* Compared to last year */}
+              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[14px] font-semibold">
+                <td className="ps-[20px]">Ett år</td>
+                {stockA !== undefined && stockB !== undefined && (
+                  <>
+                    <td>
+                      {(
+                        (stockA.marketCap /
+                          (1 + stockA.fiftyTwoWeekChangePercent / 100) /
+                          (stockA.marketCap /
+                            (1 + stockA.fiftyTwoWeekChangePercent / 100) +
+                            stockB.marketCap /
+                              (1 + stockB.fiftyTwoWeekChangePercent / 100))) *
+                        100
+                      ).toFixed(1)}
+                      %
+                    </td>
+                    <td className="pr-[20px]">
+                      {(
+                        (stockB.marketCap /
+                          (1 + stockB.fiftyTwoWeekChangePercent / 100) /
+                          (stockA.marketCap /
+                            (1 + stockA.fiftyTwoWeekChangePercent / 100) +
+                            stockB.marketCap /
+                              (1 + stockB.fiftyTwoWeekChangePercent / 100))) *
+                        100
+                      ).toFixed(1)}
+                      %
+                    </td>
+                  </>
+                )}
+              </tr>
+
+              {/* Kurs */}
+              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[14px] font-semibold">
+                <td className="ps-[20px]">Kurs</td>
+                {stockA !== undefined && stockB !== undefined && (
+                  <>
+                    <td>{stockA.regularMarketPrice}</td>
+                    <td className="pr-[20px]">{stockB.regularMarketPrice}</td>
+                  </>
+                )}
+              </tr>
+
+              {/* Vinst/Aktie */}
+              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[14px] font-semibold">
+                <td className="ps-[20px]">Vinst/Aktie</td>
+                {stockA !== undefined && stockB !== undefined && (
+                  <>
+                    <td>{stockA.epsCurrentYear}</td>
+                    <td className="pr-[20px]">{stockB.epsCurrentYear}</td>
+                  </>
+                )}
+              </tr>
+
               {/* Market Cap */}
-              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[12px] font-semibold">
+              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[14px] font-semibold">
                 <td className="ps-[20px]">
-                  Market Cap <span className="text-[#BCBCBC]">MSEK</span>
+                  Börsvärde <span className="text-[#BCBCBC]">MSEK</span>
                 </td>
                 {stockA !== undefined && stockB !== undefined && (
                   <>
@@ -267,70 +326,74 @@ export default function Home() {
                 )}
               </tr>
 
-              {/* P/E */}
-              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[12px] font-semibold">
-                <td className="ps-[20px]">P/E</td>
-                {stockA !== undefined && stockB !== undefined && (
-                  <>
-                    <td>{stockA.trailingPE.toFixed(2)}</td>
-                    <td className="pr-[20px]">
-                      {stockB.trailingPE.toFixed(2)}
-                    </td>
-                  </>
-                )}
-              </tr>
+              {stockA?.trailingPE && stockB?.trailingPE && (
+                <>
+                  {/* P/E */}
+                  <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[14px] font-semibold">
+                    <td className="ps-[20px]">P/E</td>
+                    {stockA !== undefined && stockB !== undefined && (
+                      <>
+                        <td>{stockA.trailingPE.toFixed(2)}</td>
+                        <td className="pr-[20px]">
+                          {stockB.trailingPE.toFixed(2)}
+                        </td>
+                      </>
+                    )}
+                  </tr>
 
-              {/* P/E Ratio */}
-              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[12px] font-semibold">
-                <td className="ps-[20px]">P/E Ratio</td>
-                {stockA !== undefined && stockB !== undefined && (
-                  <>
-                    <td>
-                      {(
-                        (stockA.trailingPE /
-                          (stockA.trailingPE + stockB.trailingPE)) *
-                        100
-                      ).toFixed(1)}
-                      %
-                    </td>
-                    <td className="pr-[20px]">
-                      {(
-                        (stockB.trailingPE /
-                          (stockA.trailingPE + stockB.trailingPE)) *
-                        100
-                      ).toFixed(1)}
-                      %
-                    </td>
-                  </>
-                )}
-              </tr>
-              <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[12px] font-semibold">
-                <td className="ps-[20px]"></td>
-                {stockA !== undefined && stockB !== undefined && (
-                  <td colSpan={2}>
-                    <div className="flex flex-row">
-                      <div
-                        className="h-[22px] bg-black"
-                        style={{
-                          width:
+                  {/* P/E Ratio */}
+                  <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[14px] font-semibold">
+                    <td className="ps-[20px]">P/E Ratio</td>
+                    {stockA !== undefined && stockB !== undefined && (
+                      <>
+                        <td>
+                          {(
                             (stockA.trailingPE /
                               (stockA.trailingPE + stockB.trailingPE)) *
-                            126,
-                        }}
-                      ></div>
-                      <div
-                        className="h-[22px] border border-black"
-                        style={{
-                          width:
+                            100
+                          ).toFixed(1)}
+                          %
+                        </td>
+                        <td className="pr-[20px]">
+                          {(
                             (stockB.trailingPE /
                               (stockA.trailingPE + stockB.trailingPE)) *
-                            126,
-                        }}
-                      ></div>
-                    </div>
-                  </td>
-                )}
-              </tr>
+                            100
+                          ).toFixed(1)}
+                          %
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                  <tr className="h-[56px] border-b border-b-[#E2E2E2] text-[12px] font-semibold">
+                    <td className="ps-[20px]"></td>
+                    {stockA !== undefined && stockB !== undefined && (
+                      <td colSpan={2}>
+                        <div className="flex flex-row">
+                          <div
+                            className="h-[22px] bg-black"
+                            style={{
+                              width:
+                                (stockA.trailingPE /
+                                  (stockA.trailingPE + stockB.trailingPE)) *
+                                126,
+                            }}
+                          ></div>
+                          <div
+                            className="h-[22px] border border-black"
+                            style={{
+                              width:
+                                (stockB.trailingPE /
+                                  (stockA.trailingPE + stockB.trailingPE)) *
+                                126,
+                            }}
+                          ></div>
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                </>
+              )}
             </tbody>
           </table>
         </div>
